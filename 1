@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Add some basic styling */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      
+      #tweets {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      
+      #tweet-box {
+        background-color: #f1f1f1;
+        border-top: 1px solid #ddd;
+        bottom: 0;
+        left: 0;
+        padding: 10px;
+        position: fixed;
+        width: 100%;
+      }
+      
+      #tweet-box textarea {
+        width: 100%;
+      }
+      
+      /* Make the app look beautiful */
+      #tweets li {
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+      }
+      
+      #tweets li:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      
+      #tweets li .text {
+        font-size: 1.2em;
+        margin-bottom: 5px;
+      }
+      
+      #tweets li .name {
+        color: #0095ff;
+        font-size: 1.1em;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+      
+      #tweets li .handle {
+        color: #666;
+        font-size: 0.9em;
+      }
+      
+      /* Add some hover effects */
+      #tweets li:hover {
+        background-color: #f5f5f5;
+      }
+      
+      #tweet-box:focus-within {
+        box-shadow: 0 0 2px 1px #0095ff;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="tweets">
+      <li>
+        <span class="name">John Doe</span>
+        <span class="handle">@johndoe</span>
+        <span class="text">This is a sample tweet. You can replace it with your own tweet.</span>
+      </li>
+    </ul>
+    
+    <div id="tweet-box">
+      <textarea placeholder="What's happening?"></textarea>
+    </div>
+    
+    <script>
+      // Add a new tweet to the list
+      function addTweet(text) {
+        const tweets = document.getElementById('tweets');
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span class="name">John Doe</span>
+          <span class="handle">@johndoe</span>
+          <span class="text">${text}</span>
+        `;
+        tweets.appendChild(li);
+      }
+      
+      // Get the textarea and the form
+      const textarea = document.querySelector('#tweet-box textarea');
+      const form = document.forms[0];
+      
+      // Add a submit event listener to the form
+      form.addEventListener('submit', function(event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+        
+        // Get the text from the textarea
+        const text = textarea.value;
+        
+        // Add the tweet to the list
+        addTweet(text);
+        
+        // Clear the textarea
+        textarea.value = '';
+      });
+      
+      // Add a sample tweet
+      addTweet('This is a sample tweet. You can replace it with your own tweet.');
+    </script>
+  </body>
+</html>
